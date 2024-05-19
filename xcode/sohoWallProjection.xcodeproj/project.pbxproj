@@ -22,7 +22,6 @@
 		ABF283A8EA494B6D8F0B5E96 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = E13B8B92F62F418D8CD3F8F9 /* CinderApp.icns */; };
 		D93995BE2BF90854002581C5 /* gayder.frag in Resources */ = {isa = PBXBuildFile; fileRef = D93995BD2BF90854002581C5 /* gayder.frag */; };
 		D93995BF2BF910A3002581C5 /* gayder.vert in Resources */ = {isa = PBXBuildFile; fileRef = D93995BB2BF907EA002581C5 /* gayder.vert */; };
-		D9EC5C0F2BF9A3C2005B532F /* colors.png in Resources */ = {isa = PBXBuildFile; fileRef = D9EC5C0E2BF9A3C2005B532F /* colors.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,7 +45,6 @@
 		8D1107320486CEB800E47090 /* sohoWallProjection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sohoWallProjection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D93995BB2BF907EA002581C5 /* gayder.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = gayder.vert; path = ../resources/gayder.vert; sourceTree = "<group>"; };
 		D93995BD2BF90854002581C5 /* gayder.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = gayder.frag; path = ../resources/gayder.frag; sourceTree = "<group>"; };
-		D9EC5C0E2BF9A3C2005B532F /* colors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = colors.png; path = ../resources/colors.png; sourceTree = "<group>"; };
 		E13B8B92F62F418D8CD3F8F9 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,7 +145,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D9EC5C0E2BF9A3C2005B532F /* colors.png */,
 				D93995BB2BF907EA002581C5 /* gayder.vert */,
 				D93995BD2BF90854002581C5 /* gayder.frag */,
 				E13B8B92F62F418D8CD3F8F9 /* CinderApp.icns */,
@@ -220,7 +217,6 @@
 				D93995BE2BF90854002581C5 /* gayder.frag in Resources */,
 				D93995BF2BF910A3002581C5 /* gayder.vert in Resources */,
 				ABF283A8EA494B6D8F0B5E96 /* CinderApp.icns in Resources */,
-				D9EC5C0F2BF9A3C2005B532F /* colors.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
