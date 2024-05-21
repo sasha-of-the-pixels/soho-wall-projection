@@ -16,6 +16,10 @@
 		<data>
 		TO25nxQyOLpHjCGvi+XErglmAco=
 		</data>
+		<key>Resources/snippletweak.ttf</key>
+		<data>
+		AkV7kysCpbxdwFJ4lIsUWjLMvLo=
+		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
@@ -47,6 +51,13 @@
 			<key>hash2</key>
 			<data>
 			YfSwjB6Ai80t9Nm3x9pbaPKjhxe6PlKg9B0pxvw5oK0=
+			</data>
+		</dict>
+		<key>Resources/snippletweak.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			N7ImkZyNcM8fUDUIuXLiaHoYH7+lt/eXZqOGWbQPmiQ=
 			</data>
 		</dict>
 	</dict>

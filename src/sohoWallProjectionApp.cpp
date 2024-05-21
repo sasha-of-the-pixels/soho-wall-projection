@@ -17,9 +17,15 @@ public:
 
     void setup() override;
     void draw() override;
+    void mouseDrag(MouseEvent event) override;
+    void render();
 
     gl::GlslProgRef mGlsl;
-    const string message = "meow";
+    const string message = "Welcome to SoHo!";
+    gl::TextureRef mTextTexture;
+    vec2 mSize;
+    vec2 mPadding = vec2(-1., 1.);
+    Font mFont;
 
 };
 
@@ -34,6 +40,23 @@ void sohoWallProjectionApp::setup()
 {
     //! Load shader from the resources.
     mGlsl = gl::GlslProg::create( loadResource( RES_VERT_GLSL ), loadResource( RES_FRAG_GLSL ) );
+    
+    mFont = Font( loadResource(SNIPPLETWEAK), 54 );
+    
+    render();
+}
+
+void sohoWallProjectionApp::mouseDrag( MouseEvent event )
+{
+    mPadding = vec2(event.getPos().x, -event.getPos().y);
+    render();
+}
+
+void sohoWallProjectionApp::render()
+{
+    TextBox tbox = TextBox().alignment( TextBox::CENTER ).font(mFont).size( ivec2( getWindowWidth(), getWindowHeight() )).text( message );
+    tbox.setColor( Color( 1., 1., 1. ) );
+    mTextTexture = gl::Texture2d::create( tbox.render(mPadding) );
 }
 
 void sohoWallProjectionApp::draw()
@@ -42,14 +65,15 @@ void sohoWallProjectionApp::draw()
     gl::clear();
     gl::setMatricesWindow( getWindowSize() );
 
-    //! Render the MandelBrot set by running the shader
+    //! Render the gay by running the shader
     //! for every pixel in the window.
     gl::ScopedGlslProg glslScp( mGlsl );
     mGlsl->uniform("uResolution", vec2((float) getWindowWidth(), (float) getWindowHeight()));
     mGlsl->uniform("uTime", getElapsedFrames());
     gl::drawSolidRect( getWindowBounds() );
     
-//    gl::drawString(message, vec2(10., 50.));
+    if( mTextTexture )
+            gl::draw( mTextTexture );
 }
 
 CINDER_APP( sohoWallProjectionApp, RendererGl( RendererGl::Options().msaa( 16 ) ), &sohoWallProjectionApp::prepareSettings )
