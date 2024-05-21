@@ -24,7 +24,8 @@ public:
     const string message = "Welcome to SoHo!";
     gl::TextureRef mTextTexture;
     vec2 mSize;
-    vec2 mPadding = vec2(-1., 1.);
+    ivec2 mPadding = ivec2(1, 1);
+    vec2 mOffset;
     Font mFont;
 
 };
@@ -42,21 +43,22 @@ void sohoWallProjectionApp::setup()
     mGlsl = gl::GlslProg::create( loadResource( RES_VERT_GLSL ), loadResource( RES_FRAG_GLSL ) );
     
     mFont = Font( loadResource(SNIPPLETWEAK), 54 );
+    mOffset = vec2(20., -20.);
     
     render();
 }
 
 void sohoWallProjectionApp::mouseDrag( MouseEvent event )
 {
-    mPadding = vec2(event.getPos().x, -event.getPos().y);
+    mOffset = vec2(event.getPos().x, -event.getPos().y);
     render();
 }
 
 void sohoWallProjectionApp::render()
 {
-    TextBox tbox = TextBox().alignment( TextBox::CENTER ).font(mFont).size( ivec2( getWindowWidth(), getWindowHeight() )).text( message );
+    TextBox tbox = TextBox().alignment( TextBox::LEFT ).font(mFont).size( getWindowSize() ).text( message );
     tbox.setColor( Color( 1., 1., 1. ) );
-    mTextTexture = gl::Texture2d::create( tbox.render(mPadding) );
+    mTextTexture = gl::Texture2d::create( tbox.render(mOffset) );
 }
 
 void sohoWallProjectionApp::draw()
