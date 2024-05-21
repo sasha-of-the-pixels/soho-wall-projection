@@ -18,10 +18,11 @@ public:
     void setup() override;
     void draw() override;
     void mouseDrag(MouseEvent event) override;
+    void keyDown( KeyEvent event ) override;
     void render();
 
     gl::GlslProgRef mGlsl;
-    const string message = "Welcome to SoHo!";
+    string message;
     gl::TextureRef mTextTexture;
     vec2 mSize;
     ivec2 mPadding = ivec2(1, 1);
@@ -44,8 +45,27 @@ void sohoWallProjectionApp::setup()
     
     mFont = Font( loadResource(SNIPPLETWEAK), 54 );
     mOffset = vec2(20., -20.);
+    message = "Welcome to SoHo!";
     
     render();
+}
+
+void sohoWallProjectionApp::keyDown( KeyEvent event )
+{
+    if ((event.getCode() == KeyEvent::KEY_BACKSPACE || event.getCode() == KeyEvent::KEY_DELETE) && message.length() > 0) {
+        
+        message.pop_back();
+        render();
+        return;
+    }
+    
+    if( event.getCharUtf32() ) {
+        std::string strUtf32( 1, event.getCharUtf32() );
+        std::string str = strUtf32; // toUtf8( strUtf32 );
+        
+        message += str;
+        render();
+    }
 }
 
 void sohoWallProjectionApp::mouseDrag( MouseEvent event )
@@ -56,7 +76,7 @@ void sohoWallProjectionApp::mouseDrag( MouseEvent event )
 
 void sohoWallProjectionApp::render()
 {
-    TextBox tbox = TextBox().alignment( TextBox::LEFT ).font(mFont).size( getWindowSize() ).text( message );
+    TextBox tbox = TextBox().alignment( TextBox::LEFT ).font(mFont).size( getWindowSize() - ivec2(20, 20) ).text( message );
     tbox.setColor( Color( 1., 1., 1. ) );
     mTextTexture = gl::Texture2d::create( tbox.render(mOffset) );
 }
