@@ -43,7 +43,7 @@ void sohoWallProjectionApp::setup()
     //! Load shader from the resources.
     mGlsl = gl::GlslProg::create( loadResource( RES_VERT_GLSL ), loadResource( RES_FRAG_GLSL ) );
     
-    mFont = Font( loadResource(SNIPPLETWEAK), 54 );
+    mFont = Font( loadResource(JACQUARDA_BASTARDA_9), 54 );
     mOffset = vec2(20., -20.);
     message = "Welcome to SoHo!";
     
@@ -60,8 +60,8 @@ void sohoWallProjectionApp::keyDown( KeyEvent event )
     }
     
     if( event.getCharUtf32() ) {
-        std::string strUtf32( 1, event.getCharUtf32() );
-        std::string str = strUtf32; // toUtf8( strUtf32 );
+        std::string str( 1, event.getCharUtf32() );
+//        std::string str = strUtf32; // toUtf8( strUtf32 );
         
         message += str;
         render();

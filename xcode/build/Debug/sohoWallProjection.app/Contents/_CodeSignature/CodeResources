@@ -8,6 +8,10 @@
 		<data>
 		UburOJ/MYxR40myZYtszfWYu7UU=
 		</data>
+		<key>Resources/JacquardaBastarda9-Regular-copy.ttf</key>
+		<data>
+		QgQ1RNXbjN1eQR5cy8/hT/+QgiI=
+		</data>
 		<key>Resources/gayder.frag</key>
 		<data>
 		Lt6YrIlGpGlLNP8VoyNaU2ZRNMA=
@@ -37,6 +41,13 @@
 			<key>hash2</key>
 			<data>
 			yUVV46UUoJ4U1qIVkSSVoivY/An77hZ28O2uFOEbPCY=
+			</data>
+		</dict>
+		<key>Resources/JacquardaBastarda9-Regular-copy.ttf</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			z2O7UeffAzIXhah+9+UFF5NNEKovzlGeHOSErL11m8U=
 			</data>
 		</dict>
 		<key>Resources/gayder.frag</key>
