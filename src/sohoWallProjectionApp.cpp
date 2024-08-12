@@ -11,6 +11,8 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
+const int maxFlagColorCount = 10;
+
 class sohoWallProjectionApp : public App {
 public:
     static void prepareSettings( Settings *settings );
@@ -28,7 +30,6 @@ public:
     ivec2 mPadding = ivec2(1, 1);
     vec2 mOffset;
     Font mFont;
-
 };
 
 void sohoWallProjectionApp::prepareSettings( Settings *settings )
@@ -46,7 +47,7 @@ void sohoWallProjectionApp::setup()
     mFont = Font( loadResource(JACQUARDA_BASTARDA_9), 54 );
     mOffset = vec2(20., -20.);
     message = "Welcome to SoHo!";
-    
+
     render();
 }
 
