@@ -7,12 +7,14 @@ const int kIterations = 256;
 
 uniform vec2 uResolution = vec2(1024., 768.);
 uniform uint uTime;
+uniform int colorCount;
 
 in vec2 pos;
 
 out vec4 fragColor;
 
-const vec4[8] flagColors = vec4[](
+const int maxColorCount = 10;
+const vec4[maxColorCount] flagColors = vec4[maxColorCount](
     normalize(vec4(233., 51., 35., 255.)),
     normalize(vec4(233., 51., 35., 255.)),
     normalize(vec4(239., 147., 54., 255.)),
@@ -20,7 +22,10 @@ const vec4[8] flagColors = vec4[](
     normalize(vec4(56., 127., 41., 255.)),
     normalize(vec4(30., 75., 245., 255.)),
     normalize(vec4(126., 24., 135., 255.)),
-    normalize(vec4(126., 24., 135., 255.)));
+    normalize(vec4(126., 24., 135., 255.)),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.)
+    );
 
 float waveScale = 10.;
 float timeScale = 0.02;
@@ -44,6 +49,13 @@ float sin3y(vec2 p) {
     return 0.6 * sin(0.3 * waveScale * p.y + 0.4 * timeScale * uTime);
 }
 
+vec4[maxColorCount] normalizeFlagColors(vec4[maxColorCount] cols) {
+    for (int i = 0; i < maxColorCount; i++) {
+        cols[i] = normalize(cols[i]);
+    }
+    return cols;
+}
+
 void main()
 {
     // Output color.
@@ -58,8 +70,8 @@ void main()
     
     float normalizedSum = sumOfSines / maxSumOfSines / 2. + .5;
     
-    for (int i = 0; i < flagColors.length() - 1; i++) {
-        float gc = float(flagColors.length() - 1);
+    for (int i = 0; i < colorCount - 1; i++) {
+        float gc = float(colorCount - 1);
         float lowerBound = float(i) / gc;
         float upperBound = lowerBound + 1. / gc;
         

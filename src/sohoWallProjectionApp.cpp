@@ -93,6 +93,7 @@ void sohoWallProjectionApp::draw()
     gl::ScopedGlslProg glslScp( mGlsl );
     mGlsl->uniform("uResolution", vec2((float) getWindowWidth(), (float) getWindowHeight()));
     mGlsl->uniform("uTime", getElapsedFrames());
+    mGlsl->uniform("colorCount", 8);
     gl::drawSolidRect( getWindowBounds() );
     
     if( mTextTexture )
