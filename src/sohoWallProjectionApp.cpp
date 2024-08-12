@@ -12,8 +12,6 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-// const int maxColorCount = 10;
-
 class sohoWallProjectionApp : public App {
 public:
     static void prepareSettings( Settings *settings );
