@@ -14,7 +14,7 @@
 		</data>
 		<key>Resources/gayder.frag</key>
 		<data>
-		Lt6YrIlGpGlLNP8VoyNaU2ZRNMA=
+		bcfz5P9xALhD42zfM9xp+Ydhf3Q=
 		</data>
 		<key>Resources/gayder.vert</key>
 		<data>
@@ -27,15 +27,6 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>MacOS/meowcinder</key>
-		<dict>
-			<key>cdhash</key>
-			<data>
-			bStbmj32m/5Uh7b7qhNA4XB1sK8=
-			</data>
-			<key>requirement</key>
-			<string>cdhash H"6d2b5b9a3df69bfe5487b6fbaa1340e17075b0af"</string>
-		</dict>
 		<key>Resources/CinderApp.icns</key>
 		<dict>
 			<key>hash2</key>
@@ -54,7 +45,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			6LR/zR1iu9QlIFQyf11bkCv/RcTUkNR5UQIxip2/q4E=
+			p1S39i8FCAne8dgeuiTEOUP453Ay647mpXM8LCglLE4=
 			</data>
 		</dict>
 		<key>Resources/gayder.vert</key>

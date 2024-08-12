@@ -20,6 +20,7 @@
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		ABF283A8EA494B6D8F0B5E96 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = E13B8B92F62F418D8CD3F8F9 /* CinderApp.icns */; };
+		D93985422C6AA40300385E44 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D93985412C6AA40300385E44 /* utils.cpp */; };
 		D93995BE2BF90854002581C5 /* gayder.frag in Resources */ = {isa = PBXBuildFile; fileRef = D93995BD2BF90854002581C5 /* gayder.frag */; };
 		D93995BF2BF910A3002581C5 /* gayder.vert in Resources */ = {isa = PBXBuildFile; fileRef = D93995BB2BF907EA002581C5 /* gayder.vert */; };
 		D95BFA032C6583A000CF8598 /* JacquardaBastarda9-Regular-copy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D95BFA022C6583A000CF8598 /* JacquardaBastarda9-Regular-copy.ttf */; };
@@ -45,6 +46,8 @@
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		899A5FFE8AEA46CCB273A30F /* sohoWallProjectionApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = sohoWallProjectionApp.cpp; path = ../src/sohoWallProjectionApp.cpp; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* sohoWallProjection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sohoWallProjection.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D93985402C6AA3F200385E44 /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = utils.h; path = ../include/utils.h; sourceTree = "<group>"; };
+		D93985412C6AA40300385E44 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = utils.cpp; path = ../src/utils.cpp; sourceTree = "<group>"; };
 		D93995BB2BF907EA002581C5 /* gayder.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = gayder.vert; path = ../resources/gayder.vert; sourceTree = "<group>"; };
 		D93995BD2BF90854002581C5 /* gayder.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = gayder.frag; path = ../resources/gayder.frag; sourceTree = "<group>"; };
 		D95BFA022C6583A000CF8598 /* JacquardaBastarda9-Regular-copy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JacquardaBastarda9-Regular-copy.ttf"; path = "../../../Desktop/STUFF FROM MY PREVIOUS COMPUTER/font/Jacquarda_Bastarda_9/JacquardaBastarda9-Regular-copy.ttf"; sourceTree = "<group>"; };
@@ -84,6 +87,7 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D93985412C6AA40300385E44 /* utils.cpp */,
 				899A5FFE8AEA46CCB273A30F /* sohoWallProjectionApp.cpp */,
 			);
 			name = Source;
@@ -140,6 +144,7 @@
 		29B97315FDCFA39411CA2CEA /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				D93985402C6AA3F200385E44 /* utils.h */,
 				0D783FE1CD914AE39B130825 /* Resources.h */,
 				1F7844FD0C6A48D5B3CDC0C0 /* sohoWallProjection_Prefix.pch */,
 			);
@@ -236,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46FD437D3BCE4FFC910B8AB6 /* sohoWallProjectionApp.cpp in Sources */,
+				D93985422C6AA40300385E44 /* utils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

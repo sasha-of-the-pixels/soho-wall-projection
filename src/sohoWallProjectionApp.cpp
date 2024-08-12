@@ -6,10 +6,13 @@
 #include "cinder/ImageIo.h"
 
 #include "Resources.h"
+#include "utils.h"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
+
+// const int maxColorCount = 10;
 
 class sohoWallProjectionApp : public App {
 public:
@@ -29,6 +32,8 @@ public:
     vec2 mOffset;
     Font mFont;
 
+    vec4 *mFlagColors = (vec4*) calloc(maxColorCount, sizeof(vec4));
+    int mColorCount = maxColorCount;
 };
 
 void sohoWallProjectionApp::prepareSettings( Settings *settings )
@@ -46,7 +51,37 @@ void sohoWallProjectionApp::setup()
     mFont = Font( loadResource(JACQUARDA_BASTARDA_9), 54 );
     mOffset = vec2(20., -20.);
     message = "Welcome to SoHo!";
-    
+
+    vec4 classicRainbow[maxColorCount] = {
+        vec4(228., 1., 4., 255.),
+        vec4(255., 140., 0., 255.),
+        vec4(255., 237., 0., 255.),
+        vec4(0., 129., 39., 255.),
+        vec4(0., 77., 254., 255.),
+        vec4(117., 8., 135., 255.),
+        vec4(-1., 0., 0., 0.),
+        vec4(-1., 0., 0., 0.),
+        vec4(-1., 0., 0., 0.),
+        vec4(-1., 0., 0., 0.)
+    };
+    vec4 switchTest[maxColorCount] = {
+        vec4(255., 0., 0., 255.),
+        vec4(0., 0., 255., 255.),
+        vec4(0., 255., 0., 255.),
+        vec4(-1., 0., 0., 0.),
+        vec4(-1., 0., 0., 0.),
+        vec4(-1., 0., 0., 0.),
+        vec4(-1., 0., 0., 0.),
+        vec4(-1., 0., 0., 0.),
+        vec4(-1., 0., 0., 0.),
+        vec4(-1., 0., 0., 0.)
+    };
+    for(int i = 0; i < maxColorCount; i++) {
+        mFlagColors[i] = classicRainbow[i];
+    }
+    mFlagColors = preprocessFlagColors(mFlagColors);
+    mColorCount = 6;
+
     render();
 }
 
@@ -61,7 +96,6 @@ void sohoWallProjectionApp::keyDown( KeyEvent event )
     
     if( event.getCharUtf32() ) {
         std::string str( 1, event.getCharUtf32() );
-//        std::string str = strUtf32; // toUtf8( strUtf32 );
         
         message += str;
         render();
@@ -92,6 +126,8 @@ void sohoWallProjectionApp::draw()
     gl::ScopedGlslProg glslScp( mGlsl );
     mGlsl->uniform("uResolution", vec2((float) getWindowWidth(), (float) getWindowHeight()));
     mGlsl->uniform("uTime", getElapsedFrames());
+    mGlsl->uniform("colorCount", mColorCount+2);
+    mGlsl->uniform("uFlagColors", mFlagColors, maxColorCount);
     gl::drawSolidRect( getWindowBounds() );
     
     if( mTextTexture )
