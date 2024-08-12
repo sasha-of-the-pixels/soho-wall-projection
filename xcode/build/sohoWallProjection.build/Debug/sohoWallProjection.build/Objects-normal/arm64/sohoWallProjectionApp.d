@@ -308,4 +308,5 @@ dependencies: \
   ../../cinder_master/include/cinder/CinderMath.h \
   ../../cinder_master/include/cinder/ImageIo.h \
   /Users/sasha/Documents/sohoWallProjection/include/Resources.h \
-  ../../cinder_master/include/cinder/CinderResources.h
+  ../../cinder_master/include/cinder/CinderResources.h \
+  /Users/sasha/Documents/sohoWallProjection/include/utils.h
