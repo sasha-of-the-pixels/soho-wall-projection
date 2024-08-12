@@ -75,9 +75,9 @@ void sohoWallProjectionApp::setup()
         vec4(-1., 0., 0., 0.)
     };
     for(int i = 0; i < maxColorCount; i++) {
-        mFlagColors[i] = lesbianFlag[i];
+        mFlagColors[i] = classicRainbow[i];
     }
-    mColorCount = 5;
+    mColorCount = 6;
     mFlagColors = preprocessFlagColors(mFlagColors, mColorCount);
 
     render();
@@ -85,14 +85,16 @@ void sohoWallProjectionApp::setup()
 
 void sohoWallProjectionApp::keyDown( KeyEvent event )
 {
-    if ((event.getCode() == KeyEvent::KEY_BACKSPACE || event.getCode() == KeyEvent::KEY_DELETE) && message.length() > 0) {
+    if ((event.getCode() == KeyEvent::KEY_BACKSPACE 
+      || event.getCode() == KeyEvent::KEY_DELETE) 
+      && message.length() > 0) {
         
         message.pop_back();
         render();
         return;
     }
     
-    if( event.getCharUtf32() ) {
+    if(event.getCharUtf32() ) {
         std::string str( 1, event.getCharUtf32() );
         
         message += str;
