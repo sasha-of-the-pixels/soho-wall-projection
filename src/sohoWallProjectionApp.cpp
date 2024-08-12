@@ -67,7 +67,7 @@ void sohoWallProjectionApp::setup()
     vec4 lesbianFlag[maxColorCount] = {
         vec4(214., 41., 0., 255.),
         vec4(255., 155., 85., 255.),
-        // vec4(255., 255., 255., 255.),
+        vec4(255., 255., 255., 255.),
         vec4(212., 98., 166., 255.),
         vec4(165., 0., 98., 255.),
         vec4(-1., 0., 0., 0.),
@@ -79,8 +79,8 @@ void sohoWallProjectionApp::setup()
     for(int i = 0; i < maxColorCount; i++) {
         mFlagColors[i] = lesbianFlag[i];
     }
-    mFlagColors = preprocessFlagColors(mFlagColors);
-    mColorCount = 4;
+    mColorCount = 5;
+    mFlagColors = preprocessFlagColors(mFlagColors, mColorCount);
 
     render();
 }

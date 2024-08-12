@@ -57,6 +57,25 @@ float sin3y(vec2 p) {
 // }
 // vec4[maxColorCount] flagColors = uFlagColors;
 
+vec4 oklabToSRGB(vec4 lab) {
+    float L = lab.x, a = lab.y, b = lab.z;
+    float l = L + a * +0.3963377774 + b * +0.2158037573;
+    float m = L + a * -0.1055613458 + b * -0.0638541728;
+    float s = L + a * -0.0894841775 + b * -1.2914855480;
+    // The ** operator here cubes; same as l_*l_*l_ in the C++ example:
+    l = pow(l, 3); m = pow(m, 3); s = pow(s, 3);
+    float r = l * +4.0767416621 + m * -3.3077115913 + s * +0.2309699292;
+    float g = l * -1.2684380046 + m * +2.6097574011 + s * -0.3413193965;
+    float bb = l * -0.0041960863 + m * -0.7034186147 + s * +1.7076147010;
+    // Convert linear RGB values returned from oklab math to sRGB for our use before returning them:
+    // r = 255 * linearToGamma(r); g = 255 * linearToGamma(g); b = 255 * linearToGamma(b);
+    // OPTION: clamp r g and b values to the range 0-255; but if you use the values immediately to draw, JavaScript clamps them on use:
+    // r = clamp(r, 0, 255); g = clamp(g, 0, 255); b = clamp(b, 0, 255);
+    // OPTION: round the values. May not be necessary if you use them immediately for rendering in JavaScript, as JavaScript (also) discards decimals on render:
+    // r = Math.round(r); g = Math.round(g); b = Math.round(b);
+    return vec4(r, g, bb, lab.w);
+}
+
 void main()
 {
     // Output color.
@@ -77,7 +96,7 @@ void main()
         if (lowerBound <= normalizedSum && normalizedSum <= upperBound) {
             vec4 gradColor = (normalizedSum - lowerBound) * gc * uFlagColors[i + 1]
             + (upperBound - normalizedSum) * (gc / 2.) * uFlagColors[i]; // + (upperBound - normalizedSum) * (gc - 1);
-            fragColor = gradColor;
+            fragColor = oklabToSRGB(gradColor);
         }
     }
     

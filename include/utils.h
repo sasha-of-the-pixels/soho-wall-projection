@@ -5,4 +5,4 @@ using namespace std;
 
 const int maxColorCount = 10;
 
-vec4 *preprocessFlagColors (vec4 *cols);
+vec4 *preprocessFlagColors (vec4 *cols, int colorCount);
