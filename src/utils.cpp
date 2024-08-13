@@ -13,8 +13,9 @@ vec4 rgbToOklab(vec4 rgb) {
     return vec4(L, a, b, rgb.a);
 }
 
-vec4 *preprocessFlagColors(vec4 *cols, int colorCount) {
-    vec4 *res = (vec4 *) calloc(maxColorCount, sizeof(vec4));
+std::vector<vec4> preprocessFlagColors(std::vector<vec4> cols, int colorCount) {
+    std::vector<vec4> res;
+    res.reserve(maxColorCount);
 
     res[0] = cols[0] / 255.f;
     res[0] = rgbToOklab(res[0]);
@@ -24,6 +25,6 @@ vec4 *preprocessFlagColors(vec4 *cols, int colorCount) {
     }
     res[colorCount + 1] = res[colorCount];
 
-    free(cols);
+    // free(cols);
     return res;
 }

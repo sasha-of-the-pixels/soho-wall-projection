@@ -12,6 +12,67 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
+const int numFlags = 4;
+
+struct flagInfo {
+    std::vector<vec4> colors;
+    int colorCount;
+};
+
+std::vector<vec4> classicRainbow = {
+    vec4(228., 1., 4., 255.),
+    vec4(255., 140., 0., 255.),
+    vec4(255., 237., 0., 255.),
+    vec4(0., 129., 39., 255.),
+    vec4(0., 77., 254., 255.),
+    vec4(117., 8., 135., 255.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.)
+};
+std::vector<vec4> lesbianFlag = {
+    vec4(214., 41., 0., 255.),
+    vec4(255., 155., 85., 255.),
+    vec4(255., 255., 255., 255.),
+    vec4(212., 98., 166., 255.),
+    vec4(165., 0., 98., 255.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.)
+};
+std::vector<vec4> biFlag = {
+    vec4(214., 3., 112., 255.),
+    vec4(155., 79., 149., 255.),
+    vec4(0., 56., 168., 255.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.)
+};
+std::vector<vec4> transFlag = {
+    vec4(90., 205., 249., 255.),
+    vec4(245., 169., 184., 255.),
+    vec4(255., 255., 255., 255.),
+    vec4(245., 169., 184., 255.),
+    vec4(90., 205., 249., 255.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.)
+};
+    // flagInfo flags[numFlags] = {flagInfo{classicRainbow, 6}, flagInfo{lesbianFlag, 5}};
+flagInfo flags[numFlags] = {flagInfo{classicRainbow, 6}, 
+                            flagInfo{lesbianFlag, 5}, 
+                            flagInfo{biFlag, 3}, 
+                            flagInfo{transFlag, 5}};
+
 class sohoWallProjectionApp : public App {
 public:
     static void prepareSettings( Settings *settings );
@@ -30,7 +91,8 @@ public:
     vec2 mOffset;
     Font mFont;
 
-    vec4 *mFlagColors = (vec4*) calloc(maxColorCount, sizeof(vec4));
+    uint mFlagIndex = 0;
+    std::vector<vec4> mFlagColors;
     int mColorCount = maxColorCount;
 };
 
@@ -50,34 +112,9 @@ void sohoWallProjectionApp::setup()
     mOffset = vec2(20., -20.);
     message = "Welcome to SoHo!";
 
-    vec4 classicRainbow[maxColorCount] = {
-        vec4(228., 1., 4., 255.),
-        vec4(255., 140., 0., 255.),
-        vec4(255., 237., 0., 255.),
-        vec4(0., 129., 39., 255.),
-        vec4(0., 77., 254., 255.),
-        vec4(117., 8., 135., 255.),
-        vec4(-1., 0., 0., 0.),
-        vec4(-1., 0., 0., 0.),
-        vec4(-1., 0., 0., 0.),
-        vec4(-1., 0., 0., 0.)
-    };
-    vec4 lesbianFlag[maxColorCount] = {
-        vec4(214., 41., 0., 255.),
-        vec4(255., 155., 85., 255.),
-        vec4(255., 255., 255., 255.),
-        vec4(212., 98., 166., 255.),
-        vec4(165., 0., 98., 255.),
-        vec4(-1., 0., 0., 0.),
-        vec4(-1., 0., 0., 0.),
-        vec4(-1., 0., 0., 0.),
-        vec4(-1., 0., 0., 0.),
-        vec4(-1., 0., 0., 0.)
-    };
-    for(int i = 0; i < maxColorCount; i++) {
-        mFlagColors[i] = classicRainbow[i];
-    }
-    mColorCount = 6;
+    // free(mFlagColors);
+    mFlagColors = flags[mFlagIndex].colors;
+    mColorCount = flags[mFlagIndex].colorCount;
     mFlagColors = preprocessFlagColors(mFlagColors, mColorCount);
 
     render();
@@ -92,6 +129,17 @@ void sohoWallProjectionApp::keyDown( KeyEvent event )
         message.pop_back();
         render();
         return;
+    }
+
+    if (event.getCode() == KeyEvent::KEY_TAB) {
+        if (event.isShiftDown()) {
+            mFlagIndex = (mFlagIndex + numFlags - 1) % numFlags;
+        } else {
+            mFlagIndex = (mFlagIndex + 1) % numFlags;
+        }
+        mFlagColors = flags[mFlagIndex].colors;
+        mColorCount = flags[mFlagIndex].colorCount;
+        mFlagColors = preprocessFlagColors(mFlagColors, mColorCount);
     }
     
     if(event.getCharUtf32() ) {
@@ -127,7 +175,7 @@ void sohoWallProjectionApp::draw()
     mGlsl->uniform("uResolution", vec2((float) getWindowWidth(), (float) getWindowHeight()));
     mGlsl->uniform("uTime", getElapsedFrames());
     mGlsl->uniform("colorCount", mColorCount+2);
-    mGlsl->uniform("uFlagColors", mFlagColors, maxColorCount);
+    mGlsl->uniform("uFlagColors", &mFlagColors[0], maxColorCount);
     gl::drawSolidRect( getWindowBounds() );
     
     if( mTextTexture )
