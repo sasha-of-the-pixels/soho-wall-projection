@@ -73,6 +73,9 @@ flagInfo flags[numFlags] = {flagInfo{classicRainbow, 6},
                             flagInfo{biFlag, 3}, 
                             flagInfo{transFlag, 5}};
 
+const int numShaders = 2;
+std::vector<gl::GlslProgRef> shaders;
+
 class sohoWallProjectionApp : public App {
 public:
     static void prepareSettings( Settings *settings );
@@ -94,6 +97,8 @@ public:
     uint mFlagIndex = 0;
     std::vector<vec4> mFlagColors;
     int mColorCount = maxColorCount;
+
+    uint mShaderIndex = 0;
 };
 
 void sohoWallProjectionApp::prepareSettings( Settings *settings )
@@ -106,8 +111,10 @@ void sohoWallProjectionApp::prepareSettings( Settings *settings )
 void sohoWallProjectionApp::setup()
 {
     //! Load shader from the resources.
-    mGlsl = gl::GlslProg::create( loadResource( RES_VERT_GLSL ), loadResource( RES_FRAG_GLSL ) );
-    
+    shaders.emplace_back(gl::GlslProg::create( loadResource( RES_VERT_GLSL ), loadResource( RES_FRAG_GLSL_0 ) ));
+    shaders.emplace_back(gl::GlslProg::create( loadResource( RES_VERT_GLSL ), loadResource( RES_FRAG_GLSL_1 ) ));
+    mGlsl = shaders[mShaderIndex];
+
     mFont = Font( loadResource(JACQUARDA_BASTARDA_9), 54 );
     mOffset = vec2(20., -20.);
     message = "Welcome to SoHo!";
@@ -115,15 +122,16 @@ void sohoWallProjectionApp::setup()
     // free(mFlagColors);
     mFlagColors = flags[mFlagIndex].colors;
     mColorCount = flags[mFlagIndex].colorCount;
-    mFlagColors = preprocessFlagColors(mFlagColors, mColorCount);
+    mFlagColors = preprocessFlagColors(mFlagColors, mColorCount, mShaderIndex);
 
     render();
 }
 
 void sohoWallProjectionApp::keyDown( KeyEvent event )
 {
-    if ((event.getCode() == KeyEvent::KEY_BACKSPACE 
-      || event.getCode() == KeyEvent::KEY_DELETE) 
+    int code = event.getCode();
+    if ((code == KeyEvent::KEY_BACKSPACE 
+      || code == KeyEvent::KEY_DELETE) 
       && message.length() > 0) {
         
         message.pop_back();
@@ -131,7 +139,7 @@ void sohoWallProjectionApp::keyDown( KeyEvent event )
         return;
     }
 
-    if (event.getCode() == KeyEvent::KEY_TAB) {
+    if (code == KeyEvent::KEY_TAB) {
         if (event.isShiftDown()) {
             mFlagIndex = (mFlagIndex + numFlags - 1) % numFlags;
         } else {
@@ -139,7 +147,17 @@ void sohoWallProjectionApp::keyDown( KeyEvent event )
         }
         mFlagColors = flags[mFlagIndex].colors;
         mColorCount = flags[mFlagIndex].colorCount;
-        mFlagColors = preprocessFlagColors(mFlagColors, mColorCount);
+        mFlagColors = preprocessFlagColors(mFlagColors, mColorCount, mShaderIndex);
+    }
+
+    if (code == KeyEvent::KEY_LEFT || code == KeyEvent::KEY_RIGHT) {
+        if (code == KeyEvent::KEY_LEFT) {
+            mShaderIndex = (mShaderIndex + numShaders - 1) % numShaders;
+        } if (code == KeyEvent::KEY_RIGHT) {
+            mShaderIndex = (mShaderIndex + 1) % numShaders;
+        }
+        mGlsl = shaders[mShaderIndex];
+        mFlagColors = preprocessFlagColors(flags[mFlagIndex].colors, mColorCount, mShaderIndex);
     }
     
     if(event.getCharUtf32() ) {
@@ -174,7 +192,7 @@ void sohoWallProjectionApp::draw()
     gl::ScopedGlslProg glslScp( mGlsl );
     mGlsl->uniform("uResolution", vec2((float) getWindowWidth(), (float) getWindowHeight()));
     mGlsl->uniform("uTime", getElapsedFrames());
-    mGlsl->uniform("colorCount", mColorCount+2);
+    mGlsl->uniform("colorCount", mColorCount + (mShaderIndex == 0 ? 2 : 0));
     mGlsl->uniform("uFlagColors", &mFlagColors[0], maxColorCount);
     gl::drawSolidRect( getWindowBounds() );
     
