@@ -13,17 +13,20 @@ vec4 rgbToOklab(vec4 rgb) {
     return vec4(L, a, b, rgb.a);
 }
 
-std::vector<vec4> preprocessFlagColors(std::vector<vec4> cols, int colorCount) {
+std::vector<vec4> preprocessFlagColors(std::vector<vec4> cols, int colorCount, uint shaderIdx) {
     std::vector<vec4> res;
     res.reserve(maxColorCount);
 
     res[0] = cols[0] / 255.f;
     res[0] = rgbToOklab(res[0]);
 
-    for (int i = 1; i < colorCount /*+ 1*/; i++) {
-        res[i] = rgbToOklab(cols[i/*-1*/]/255.f);
+    for (int i = 1; i < colorCount + (shaderIdx == 0 ? 1 : 0); i++) {
+        res[i] = rgbToOklab(cols[shaderIdx == 0 ? i - 1 : i]/255.f);
     }
-    // res[colorCount + 1] = res[colorCount];
+
+    if (shaderIdx == 0) {
+        res[colorCount + 1] = res[colorCount];
+    }
 
     // free(cols);
     return res;
