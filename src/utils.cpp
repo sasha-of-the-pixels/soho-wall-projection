@@ -20,10 +20,10 @@ std::vector<vec4> preprocessFlagColors(std::vector<vec4> cols, int colorCount) {
     res[0] = cols[0] / 255.f;
     res[0] = rgbToOklab(res[0]);
 
-    for (int i = 1; i < colorCount + 1; i++) {
-        res[i] = rgbToOklab(cols[i-1]/255.f);
+    for (int i = 1; i < colorCount /*+ 1*/; i++) {
+        res[i] = rgbToOklab(cols[i/*-1*/]/255.f);
     }
-    res[colorCount + 1] = res[colorCount];
+    // res[colorCount + 1] = res[colorCount];
 
     // free(cols);
     return res;

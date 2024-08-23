@@ -106,7 +106,7 @@ void sohoWallProjectionApp::prepareSettings( Settings *settings )
 void sohoWallProjectionApp::setup()
 {
     //! Load shader from the resources.
-    mGlsl = gl::GlslProg::create( loadResource( RES_VERT_GLSL ), loadResource( RES_FRAG_GLSL ) );
+    mGlsl = gl::GlslProg::create( loadResource( RES_VERT_GLSL ), loadResource( RES_FRAG_GLSL_1 ) );
     
     mFont = Font( loadResource(JACQUARDA_BASTARDA_9), 54 );
     mOffset = vec2(20., -20.);
@@ -174,7 +174,7 @@ void sohoWallProjectionApp::draw()
     gl::ScopedGlslProg glslScp( mGlsl );
     mGlsl->uniform("uResolution", vec2((float) getWindowWidth(), (float) getWindowHeight()));
     mGlsl->uniform("uTime", getElapsedFrames());
-    mGlsl->uniform("colorCount", mColorCount+2);
+    mGlsl->uniform("colorCount", mColorCount/*+2*/);
     mGlsl->uniform("uFlagColors", &mFlagColors[0], maxColorCount);
     gl::drawSolidRect( getWindowBounds() );
     

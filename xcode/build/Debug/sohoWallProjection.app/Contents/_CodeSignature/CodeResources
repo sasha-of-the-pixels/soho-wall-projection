@@ -12,6 +12,10 @@
 		<data>
 		QgQ1RNXbjN1eQR5cy8/hT/+QgiI=
 		</data>
+		<key>Resources/flowie.frag</key>
+		<data>
+		s4YthOC820/K+q3AZDY/AVRjelY=
+		</data>
 		<key>Resources/gayder.frag</key>
 		<data>
 		umfMOrNrlJLzbcOQvrRognnZPc8=
@@ -39,6 +43,13 @@
 			<key>hash2</key>
 			<data>
 			z2O7UeffAzIXhah+9+UFF5NNEKovzlGeHOSErL11m8U=
+			</data>
+		</dict>
+		<key>Resources/flowie.frag</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			2SJLLEv4c8oP1jHqCoxd4nLRfgTZ8o/rql/68Lt8CpA=
 			</data>
 		</dict>
 		<key>Resources/gayder.frag</key>
