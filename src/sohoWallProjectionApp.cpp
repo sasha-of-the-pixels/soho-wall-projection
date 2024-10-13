@@ -12,7 +12,7 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-const int numFlags = 4;
+const int numFlags = 5;
 
 struct flagInfo {
     std::vector<vec4> colors;
@@ -67,11 +67,25 @@ std::vector<vec4> transFlag = {
     vec4(-1., 0., 0., 0.),
     vec4(-1., 0., 0., 0.)
 };
+
+std::vector<vec4> aceFlag = {
+    vec4(0., 0., 0., 255.),
+    vec4(163., 163., 163., 255.),
+    vec4(255., 255., 255., 255.),
+    vec4(128., 0., 128., 255.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.),
+    vec4(-1., 0., 0., 0.)
+};
     // flagInfo flags[numFlags] = {flagInfo{classicRainbow, 6}, flagInfo{lesbianFlag, 5}};
 flagInfo flags[numFlags] = {flagInfo{classicRainbow, 6}, 
                             flagInfo{lesbianFlag, 5}, 
                             flagInfo{biFlag, 3}, 
-                            flagInfo{transFlag, 5}};
+                            flagInfo{transFlag, 5},
+                            flagInfo{aceFlag, 4}};
 
 const int numShaders = 2;
 std::vector<gl::GlslProgRef> shaders;
@@ -115,7 +129,7 @@ void sohoWallProjectionApp::setup()
     shaders.emplace_back(gl::GlslProg::create( loadResource( RES_VERT_GLSL ), loadResource( RES_FRAG_GLSL_1 ) ));
     mGlsl = shaders[mShaderIndex];
 
-    mFont = Font( loadResource(JACQUARDA_BASTARDA_9), 54 );
+    mFont = Font( loadResource(SNIPPLETWEAK), 54 );
     mOffset = vec2(20., -20.);
     message = "Welcome to SoHo!";
 

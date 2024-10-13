@@ -24,7 +24,6 @@
 		D93985422C6AA40300385E44 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D93985412C6AA40300385E44 /* utils.cpp */; };
 		D93995BE2BF90854002581C5 /* gayder.frag in Resources */ = {isa = PBXBuildFile; fileRef = D93995BD2BF90854002581C5 /* gayder.frag */; };
 		D93995BF2BF910A3002581C5 /* gayder.vert in Resources */ = {isa = PBXBuildFile; fileRef = D93995BB2BF907EA002581C5 /* gayder.vert */; };
-		D95BFA032C6583A000CF8598 /* JacquardaBastarda9-Regular-copy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D95BFA022C6583A000CF8598 /* JacquardaBastarda9-Regular-copy.ttf */; };
 		D9EC5C112BFC25B7005B532F /* snippletweak.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D9EC5C102BFC25B7005B532F /* snippletweak.ttf */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +51,6 @@
 		D93985412C6AA40300385E44 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = utils.cpp; path = ../src/utils.cpp; sourceTree = "<group>"; };
 		D93995BB2BF907EA002581C5 /* gayder.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = gayder.vert; path = ../resources/gayder.vert; sourceTree = "<group>"; };
 		D93995BD2BF90854002581C5 /* gayder.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = gayder.frag; path = ../resources/gayder.frag; sourceTree = "<group>"; };
-		D95BFA022C6583A000CF8598 /* JacquardaBastarda9-Regular-copy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JacquardaBastarda9-Regular-copy.ttf"; path = "../../../Desktop/STUFF FROM MY PREVIOUS COMPUTER/font/Jacquarda_Bastarda_9/JacquardaBastarda9-Regular-copy.ttf"; sourceTree = "<group>"; };
 		D9EC5C102BFC25B7005B532F /* snippletweak.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = snippletweak.ttf; path = ../resources/snippletweak.ttf; sourceTree = "<group>"; };
 		E13B8B92F62F418D8CD3F8F9 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,7 +155,6 @@
 			isa = PBXGroup;
 			children = (
 				D9109B612C78CE940035EEA1 /* flowie.frag */,
-				D95BFA022C6583A000CF8598 /* JacquardaBastarda9-Regular-copy.ttf */,
 				D9EC5C102BFC25B7005B532F /* snippletweak.ttf */,
 				D93995BB2BF907EA002581C5 /* gayder.vert */,
 				D93995BD2BF90854002581C5 /* gayder.frag */,
@@ -233,7 +230,6 @@
 				ABF283A8EA494B6D8F0B5E96 /* CinderApp.icns in Resources */,
 				D9109B622C78CE940035EEA1 /* flowie.frag in Resources */,
 				D9EC5C112BFC25B7005B532F /* snippletweak.ttf in Resources */,
-				D95BFA032C6583A000CF8598 /* JacquardaBastarda9-Regular-copy.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
