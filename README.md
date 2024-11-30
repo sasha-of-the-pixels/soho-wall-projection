@@ -5,7 +5,7 @@ I made the original version of the "flowie" shader on Shadertoy here: https://ww
 **The current release (probably) only works on M1 MacOS.**
 
 ## Controls
-Press tab or shift+tab to switch between flags. Press left/right arrow keys to switch between shaders.
+Press tab or shift+tab to switch between flags. Press left/right arrow keys to switch between shaders. Just type stuff in order to edit the message and move the textbox around by dragging.
 
 ## Future plans
 - Figure out how to build the app for more platforms
