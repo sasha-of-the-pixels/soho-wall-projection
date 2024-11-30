@@ -4,9 +4,12 @@ I made the original version of the "flowie" shader on Shadertoy here: https://ww
 
 **The current release (probably) only works on M1 MacOS.**
 
+![Screenshot of the first shader](https://github.com/Lumgol/soho-wall-projection/blob/main/app_screenshot.png?raw=true)
+
 ## Controls
 Press tab or shift+tab to switch between flags. Press left/right arrow keys to switch between shaders. Just type stuff in order to edit the message and move the textbox around by dragging.
 
 ## Future plans
 - Figure out how to build the app for more platforms
 - Add more flags and shaders!
+- Maybe allow switching fonts
