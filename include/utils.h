@@ -1,7 +1,6 @@
-#include "cinder/gl/gl.h"
+#include <cinder/gl/gl.h>
 
 using namespace ci;
-using namespace std;
 
 const int maxColorCount = 10;
 

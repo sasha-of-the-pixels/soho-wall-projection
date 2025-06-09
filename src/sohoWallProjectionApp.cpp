@@ -10,7 +10,6 @@
 
 using namespace ci;
 using namespace ci::app;
-using namespace std;
 
 const int numFlags = 5;
 
@@ -101,7 +100,7 @@ public:
     void render();
 
     gl::GlslProgRef mGlsl;
-    string message;
+    std::string message;
     gl::TextureRef mTextTexture;
     vec2 mSize;
     ivec2 mPadding = ivec2(1, 1);
@@ -129,7 +128,7 @@ void sohoWallProjectionApp::setup()
     shaders.emplace_back(gl::GlslProg::create( loadResource( RES_VERT_GLSL ), loadResource( RES_FRAG_GLSL_1 ) ));
     mGlsl = shaders[mShaderIndex];
 
-    mFont = Font( loadResource(SNIPPLETWEAK), 54 );
+    mFont = Font( loadResource(YOSTER), 54 );
     mOffset = vec2(20., -20.);
     message = "Welcome to SoHo!";
 
