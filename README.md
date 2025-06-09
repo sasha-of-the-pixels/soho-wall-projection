@@ -34,5 +34,6 @@ Press tab or shift+tab to switch between flags. Press left/right arrow keys to s
 
 ## Future plans
 - Figure out how to build the app for more platforms
+  - This has been _kinda_ resolved by using CMake, but if you're not on an ARM Mac then you'll still have to clone Cinder to run this.
 - Add more flags and shaders!
 - Maybe allow switching fonts
